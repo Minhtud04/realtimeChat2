@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/mern-blog";
 
 mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');
@@ -24,8 +24,6 @@ async function dbConnect() {
         const opts = {
            // useNewUrlParser: true,
            // useUnifiedTopology: true,
-            useFindAndModify: false,
-            useCreateIndex: true,
 
             bufferCommands: false, // Disable mongoose buffering
             socketTimeoutMS: 0, // Close sockets after 30 seconds of inactivity
